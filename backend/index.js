@@ -11,5 +11,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Backend API working!" });
 });
 
+app.get("/seatbelt", (req, res) =>{
+    res.json({message : "Seatbelt Violation Detection"});
+})
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
