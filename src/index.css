@@ -54,6 +54,11 @@ body, html {
   backdrop-filter: blur(4px);
 }
 
+.table-primary th {
+  color: black !important;
+}
+
+
 .left-section h1 {
   position: relative;
   font-size: 48px;
