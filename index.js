@@ -8,8 +8,11 @@ const violationRoutes = require("./routes/violationRoutes");
 const officerRoutes = require("./routes/officerRoutes");
 const vehicleRoutes = require("./routes/vehicleRoutes");
 const challanRoutes = require("./routes/challanRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const { protect } = require("./middleware/authMiddleware");
+
 
 const app = express();
 app.use(cors());
@@ -17,7 +20,7 @@ app.use(express.json());
 
 // Public routes
 app.use("/auth", authRoutes);
-app.use("/officers", officerRoutes);
+app.use("/officer", officerRoutes);
 app.use("/vehicles", vehicleRoutes);
 app.use("/challans/check", challanRoutes);
 app.use("/challans/:id/pay", challanRoutes);
@@ -28,6 +31,9 @@ app.use("/violations/check", violationRoutes);
 // Protected routes
 app.use("/violations", protect, violationRoutes);
 app.use("/challans", protect, challanRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/admin", adminRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
