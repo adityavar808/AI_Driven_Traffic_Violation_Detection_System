@@ -1,53 +1,61 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-import Dashboard from "./pages/Dashboard";
+import OfficerDashboard from "./pages/OfficerDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import Violations from "./pages/Violations";
 import Challans from "./pages/Challans";
-
-const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    return <Navigate to="/" replace />;
-  }
-  return children;
-};
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Public Login Page */}
+        {/* Public Login */}
         <Route path="/" element={<LoginPage />} />
 
-        {/* Protected Routes */}
+        {/* Officer Routes */}
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute>
-              <Dashboard />
+            <ProtectedRoute requiredRole="officer">
+              <OfficerDashboard />
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/violations"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute requiredRole="officer">
               <Violations />
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/challans"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute requiredRole="officer">
               <Challans />
             </ProtectedRoute>
           }
         />
 
-        {/* Catch-all redirect */}
+        {/* Admin Routes */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Unauthorized Access Page */}
+        <Route
+          path="/unauthorized"
+          element={<h2 className="text-center mt-5">🚫 Access Denied</h2>}
+        />
+
+        {/* Catch-All Redirect */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

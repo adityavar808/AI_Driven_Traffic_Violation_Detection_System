@@ -19,9 +19,16 @@ export default function TrafficLogin() {
         password,
       });
 
-      const { token } = res.data;
+      const { token, role, name } = res.data;
+
+      // ✅ store token & role
       localStorage.setItem("token", token);
-      navigate("/dashboard");
+      localStorage.setItem("role", role);
+      localStorage.setItem("name", name);
+
+      // ✅ redirect by role
+      if (role === "admin") navigate("/admin/dashboard");
+      else navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }
@@ -29,7 +36,6 @@ export default function TrafficLogin() {
 
   return (
     <div>
-      {/* Main content for desktop */}
       <div className="main-content">
         <div className="container-fluid d-flex align-items-center justify-content-center vh-100">
           <div className="row">
@@ -43,7 +49,7 @@ export default function TrafficLogin() {
               }}
             >
               <div className="overlay"></div>
-              <h1 className="fw-bold display-5 text-center">OFFICER DASHBOARD</h1>
+              <h1 className="fw-bold display-5 text-center">TRAFFIC DASHBOARD</h1>
             </div>
 
             {/* Right Section */}
@@ -62,7 +68,7 @@ export default function TrafficLogin() {
                   <input
                     type="email"
                     className="form-control ps-5"
-                    placeholder="Officer ID"
+                    placeholder="Officer/Admin Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -76,14 +82,13 @@ export default function TrafficLogin() {
                   <input
                     type="password"
                     className="form-control ps-5"
-                    placeholder="Officer Password"
+                    placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </div>
 
-                {/* Traffic Button */}
                 <button type="submit" className="traffic-btn">
                   <span className="light green"></span>
                   <span className="light yellow"></span>
@@ -93,14 +98,12 @@ export default function TrafficLogin() {
                   <span className="light yellow"></span>
                   <span className="light red"></span>
                 </button>
-
               </form>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Restriction message for small screens */}
       <div className="restricted-message text-center d-flex flex-column align-items-center justify-content-center vh-100 px-3">
         <i className="bi bi-exclamation-triangle-fill fs-1 mb-3 text-white"></i>
         <p className="text-white fs-4">
