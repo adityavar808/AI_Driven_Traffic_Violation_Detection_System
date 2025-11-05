@@ -2,9 +2,6 @@
 
 This repository contains the source code and related files for the **AI Driven Traffic Violation Detection System** project.
 
-⚠️ **Note:** The **main branch** does not contain project files.
-All code, backend, and frontend components are organized in separate branches.
-
 ---
 
 ## 📂 How to Access the Repository
