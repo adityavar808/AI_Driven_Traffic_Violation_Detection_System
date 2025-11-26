@@ -272,7 +272,7 @@ export default function OfficerDashboard() {
     );
   }
 
-  // chart da
+  // chart dat
   const chartData = useMemo(() => {
     const dateMap = {};
     filteredViolations.forEach((v) => {
