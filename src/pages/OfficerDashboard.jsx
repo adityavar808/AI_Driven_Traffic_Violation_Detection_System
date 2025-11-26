@@ -562,7 +562,7 @@ export default function OfficerDashboard() {
       return (
         <div className="mt-4">
           <h3 className="text-white text-center mb-3">
-            📈 Violation Trends (Overspeed, Red-light, Seatbelt)
+            Violation Trends (Overspeed, Red-light, Seatbelt)
           </h3>
 
           <div
