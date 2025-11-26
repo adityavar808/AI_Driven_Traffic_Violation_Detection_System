@@ -21,12 +21,12 @@ export default function TrafficLogin() {
 
       const { token, role, name } = res.data;
 
-      // ✅ store token & role
+      // store token & role
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("name", name);
 
-      // ✅ redirect by role
+      // redirect by role
       if (role === "admin") navigate("/admin/dashboard");
       else navigate("/dashboard");
     } catch (err) {
@@ -36,6 +36,12 @@ export default function TrafficLogin() {
 
   return (
     <div>
+      <style>{`
+      html, body {
+        height: 100%;
+        overflow: hidden;
+      }
+    `}</style>
       <div className="main-content">
         <div className="container-fluid d-flex align-items-center justify-content-center vh-100">
           <div className="row">
@@ -104,13 +110,13 @@ export default function TrafficLogin() {
         </div>
       </div>
 
-      <div className="restricted-message text-center d-flex flex-column align-items-center justify-content-center vh-100 px-3">
+      {/* <div className="restricted-message text-center d-flex flex-column align-items-center justify-content-center vh-100 px-3">
         <i className="bi bi-exclamation-triangle-fill fs-1 mb-3 text-white"></i>
         <p className="text-white fs-4">
           Sorry, this site is only available on desktop screens. Please use a larger
           device to access the dashboard.
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }

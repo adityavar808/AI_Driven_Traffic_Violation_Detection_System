@@ -5,13 +5,17 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Violations from "./pages/Violations";
 import Challans from "./pages/Challans";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import ChallanSearch from "./pages/ChallanSearch";
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Public Login */}
+        {/* Public Routes */}
         <Route path="/" element={<LoginPage />} />
+
+        {/* Citizen / Public Challan Search */}
+        <Route path="/challan-search" element={<ChallanSearch />} />
 
         {/* Officer Routes */}
         <Route
@@ -52,7 +56,7 @@ function App() {
         {/* Unauthorized Access Page */}
         <Route
           path="/unauthorized"
-          element={<h2 className="text-center mt-5">🚫 Access Denied</h2>}
+          element={<h2 className="text-center mt-5">Access Denied</h2>}
         />
 
         {/* Catch-All Redirect */}
