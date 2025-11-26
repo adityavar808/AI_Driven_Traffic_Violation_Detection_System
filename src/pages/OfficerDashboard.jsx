@@ -302,11 +302,7 @@ export default function OfficerDashboard() {
       }));
   }, [filteredViolations]);
 
-  // ============================
-  // UI Rendering
-  // ============================
   const renderContent = () => {
-    // ---------------- DASHBOARD ----------------
     if (activeMenu === "dashboard") {
       return (
         <div>
